@@ -1,3 +1,0 @@
--- SELECT dbo.GOOGLE_TRANSLATE('TÜRKÇE ÇOK GÜZEL','TR','EN')
-
--- SELECT * FROM POSTS WHERE CONTAINS(BODY,'"microsoft sql server')
