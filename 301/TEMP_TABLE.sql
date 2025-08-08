@@ -1,0 +1,49 @@
+
+CREATE TABLE #T(
+	[ORDERID] [int] NOT NULL,
+	[DATE_] [datetime] NULL,
+	[TOTALPRICE] [decimal](18, 4) NULL,
+	[STATUS_] [tinyint] NULL,
+	[USERID] [int] NOT NULL,
+	[BIRTHDATE] [date] NULL,
+	[CREATEDDATE] [datetime] NULL,
+	[USERNAME_] [varchar](50) NULL,
+	[NAMESURNAME] [varchar](100) NULL,
+	[EMAIL] [varchar](100) NULL,
+	[GENDER] [varchar](1) NULL,
+	[TELNR1] [varchar](15) NULL,
+	[TELNR2] [varchar](15) NULL,
+	[CITY] [varchar](50) NULL,
+	[TOWN] [varchar](50) NULL,
+	[DISTRICT] [varchar](50) NULL,
+	[ADDRESSID] [int] NOT NULL,
+	[POSTALCODE] [varchar](10) NULL,
+	[ADDRESSTEXT] [varchar](500) NULL,
+	[ID] [int] NOT NULL,
+	[ITEMCODE] [varchar](50) NULL,
+	[ITEMNAME] [varchar](100) NULL,
+	[BRAND] [varchar](50) NULL,
+	[ITEMUNITPRICE] [float] NULL,
+	[CATEGORY1] [varchar](50) NULL,
+	[CATEGORY2] [varchar](50) NULL,
+	[CATEGORY3] [varchar](50) NULL,
+	[ORDERDETAILID] [int] NOT NULL,
+	[AMOUNT] [int] NULL,
+	[ORDERUNITPRICE] [decimal](18, 4) NULL,
+	[LINETOTAL] [decimal](18, 4) NULL,
+	[INVOICEID] [int] NOT NULL,
+	[INVOICEDATE] [datetime] NULL,
+	[CARGOFICHENO] [varchar](20) NULL
+) 
+
+
+TRUNCATE TABLE #T 
+INSERT INTO #T 
+EXEC SPSALES @BEGDATE='2019-04-01',@ENDDATE='2019-05-01',@CITY='B%'
+
+
+SELECT CITY,SUM(TOTALPRICE) FROM #T
+WHERE CATEGORY1='GIDA' AND REGION='MARMARA'
+GROUP BY CITY
+
+DROP TABLE #T
